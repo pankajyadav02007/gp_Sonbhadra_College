@@ -14,21 +14,21 @@ export default function Hero() {
       subtitle: 'Shaping Future Engineers with Excellence',
       description:
         'Empowering students with quality technical education and industry-ready skills',
-      image: '/images/slide1.jpg',
+      image: 'https://cdn.pixabay.com/photo/2017/09/01/13/56/university-2704306_960_720.jpg',
     },
     {
       title: 'Industry-Ready Technical Education',
       subtitle: 'Learn from Experts, Build Your Career',
       description:
         'State-of-the-art facilities and experienced faculty for your success',
-      image: '/images/slide2.jpg',
+      image: 'https://www.bennett.edu.in/wp-content/uploads/2024/12/Navigating-Campus-Resources-at-Bennett-University-A-Step-by-Step-Guide.jpg',
     },
     {
       title: '100% Placement Assistance',
       subtitle: 'Your Dream Career Starts Here',
       description:
         'Strong industry partnerships and dedicated placement cell',
-      image: '/images/slide3.jpg',
+      image: 'https://www.makehappen.org/wp-content/uploads/2020/04/600-campus-75731374.jpg',
     },
   ];
 
@@ -134,7 +134,7 @@ export default function Hero() {
           {/* Principal Image */}
           <div className="flex justify-center">
             <Image
-              src="/images/https://th.bing.com/th/id/R.656aa56d6fc9fe4c2e22c22531a5bf82?rik=JNPkJaVZsRRanA&riu=http%3a%2f%2fgpsonbhadra.in%2fpramod+new.jpg&ehk=UIbSGotjXvyty8HNc%2fzLPl36sYJ90pomcfr6v4s3ptk%3d&risl=&pid=ImgRaw&r=0"
+              src="https://urise.up.gov.in/resources/profile_image/su/AD202000017935_Principal1.jpeg"
               alt="Principal"
               width={320}
               height={320}
