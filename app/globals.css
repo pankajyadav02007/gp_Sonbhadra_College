@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -89,4 +93,131 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+/* ----------------------------
+  Navbar Animations & Styles
+---------------------------- */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(12px);
+}
+
+.navbar.hero {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+}
+
+.navbar.scrolled {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #1f2937; /* gray-800 */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-shadow: none;
+}
+
+/* ----------------------------
+  Navbar Items
+---------------------------- */
+.nav-item {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Default hero mode */
+.nav-item.hero {
+  color: white;
+}
+
+/* After scroll */
+.nav-item.scrolled {
+  color: #1f2937; /* gray-800 */
+}
+
+/* Hover effect: color same as current text */
+.nav-item:hover {
+  color: inherit; /* hover par text color same */
+  background-color: rgba(255, 255, 255, 0.1); /* subtle glass highlight */
+}
+
+/* ----------------------------
+  Dropdown Menu
+---------------------------- */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 12rem; /* 48 in Tailwind */
+  margin-top: 0.25rem;
+  border-radius: 0.75rem;
+  backdrop-filter: blur(12px);
+  transition: all 0.2s ease;
+  z-index: 50;
+}
+
+.dropdown-menu.hero {
+  background-color: rgba(255,255,255,0.2);
+  color: white;
+}
+
+.dropdown-menu.scrolled {
+  background-color: rgba(255,255,255,0.95);
+  color: #1f2937;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Dropdown Items */
+.dropdown-item {
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+/* Hover effect: background only */
+.dropdown-item:hover {
+  color: inherit;
+  background-color: rgba(255,255,255,0.2);
+}
+
+/* ----------------------------
+  Mobile Menu Animation
+---------------------------- */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slideDown {
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out forwards;
 }

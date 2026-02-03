@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import { ArrowRight, GraduationCap, Users, Award, BookOpen } from 'lucide-react';
+import { GraduationCap, Users, Award, BookOpen } from 'lucide-react';
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [statsInView, setStatsInView] = useState(false);
+  const statsRef = useRef<HTMLDivElement>(null);
 
   const slides = [
     {
@@ -26,32 +27,41 @@ export default function Hero() {
     {
       title: '100% Placement Assistance',
       subtitle: 'Your Dream Career Starts Here',
-      description:
-        'Strong industry partnerships and dedicated placement cell',
+      description: 'Strong industry partnerships and dedicated placement cell',
       image: 'https://www.makehappen.org/wp-content/uploads/2020/04/600-campus-75731374.jpg',
     },
   ];
 
+  const stats = [
+    { icon: GraduationCap, value: 5000, label: 'Alumni' },
+    { icon: Users, value: 1000, label: 'Students' },
+    { icon: Award, value: 95, label: 'Placement Rate (%)' },
+    { icon: BookOpen, value: 15, label: 'Courses' },
+  ];
+
+  // Auto slide
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
-
     return () => clearInterval(interval);
-  }, [slides.length]);
+  }, []);
 
-  const stats = [
-    { icon: GraduationCap, value: '5000+', label: 'Alumni' },
-    { icon: Users, value: '1000+', label: 'Students' },
-    { icon: Award, value: '95%', label: 'Placement Rate' },
-    { icon: BookOpen, value: '15+', label: 'Courses' },
-  ];
+  // Counting animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) setStatsInView(true);
+      },
+      { threshold: 0.5 }
+    );
+    if (statsRef.current) observer.observe(statsRef.current);
+  }, []);
 
   return (
     <>
-      {/* ================= HERO SECTION ================= */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background Image */}
+      {/* ================= HERO SLIDER ================= */}
+      <section className="relative min-h-screen flex flex-col items-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src={slides[currentSlide].image}
@@ -63,35 +73,16 @@ export default function Hero() {
           <div className="absolute inset-0 bg-black/60" />
         </div>
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 text-center">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 text-center mt-20">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
             {slides[currentSlide].title}
           </h1>
-
           <p className="text-xl md:text-2xl text-gray-200 mb-4">
             {slides[currentSlide].subtitle}
           </p>
-
           <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
             {slides[currentSlide].description}
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-white text-blue-600 hover:bg-blue-50"
-            >
-              Apply Now <ArrowRight className="ml-2" />
-            </Button>
-
-            <Button
-              size="lg"
-              variant="outline"
-              className="text-blue-600 border-white hover:bg-white hover:text-blue-600"
-            >
-              Explore Courses
-            </Button>
-          </div>
 
           {/* Slider Dots */}
           <div className="flex justify-center gap-3 mt-10">
@@ -100,29 +91,25 @@ export default function Hero() {
                 key={index}
                 onClick={() => setCurrentSlide(index)}
                 className={`h-3 rounded-full transition-all ${
-                  currentSlide === index
-                    ? 'w-8 bg-white'
-                    : 'w-3 bg-white/50'
+                  currentSlide === index ? 'w-8 bg-white' : 'w-3 bg-white/50'
                 }`}
               />
             ))}
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto mt-16">
+          {/* Stats Cards */}
+          <div
+            ref={statsRef}
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto mt-16"
+          >
             {stats.map((stat, index) => (
-              <div
+              <StatCard
                 key={index}
-                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20"
-              >
-                <stat.icon className="w-10 h-10 text-white mx-auto mb-3" />
-                <div className="text-3xl font-bold text-white">
-                  {stat.value}
-                </div>
-                <div className="text-gray-200 text-sm">
-                  {stat.label}
-                </div>
-              </div>
+                icon={stat.icon}
+                label={stat.label}
+                value={stat.value}
+                inView={statsInView}
+              />
             ))}
           </div>
         </div>
@@ -144,13 +131,9 @@ export default function Hero() {
 
           {/* Principal Message */}
           <div>
-            <h2 className="text-3xl font-bold mb-4">
-              Message from the Principal
-            </h2>
+            <h2 className="text-3xl font-bold mb-4">Message from the Principal</h2>
             <p className="text-gray-600 mb-4">
-              At GPS On Bhadra Polytechnic College, we are committed to
-              providing industry-focused technical education and shaping
-              confident, skilled engineers for tomorrow.
+              At GPS On Bhadra Polytechnic College, we are committed to providing industry-focused technical education and shaping confident, skilled engineers for tomorrow.
             </p>
             <p className="font-semibold text-gray-800">
               — Dr. ABC XYZ <br />
@@ -160,5 +143,44 @@ export default function Hero() {
         </div>
       </section>
     </>
+  );
+}
+
+// ================= STAT CARD COMPONENT =================
+interface StatCardProps {
+  icon: any;
+  label: string;
+  value: number;
+  inView: boolean;
+}
+
+function StatCard({ icon: Icon, label, value, inView }: StatCardProps) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    let start = 0;
+    const end = value;
+    const duration = 2000;
+    const increment = end / (duration / 50);
+
+    const counter = setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        start = end;
+        clearInterval(counter);
+      }
+      setCount(Math.floor(start));
+    }, 50);
+
+    return () => clearInterval(counter);
+  }, [inView, value]);
+
+  return (
+    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20 transform transition hover:scale-105 hover:bg-white/20">
+      <Icon className="w-10 h-10 text-white mx-auto mb-3" />
+      <div className="text-3xl font-bold text-white">{count}{label.includes('%') ? '%' : '+'}</div>
+      <div className="text-gray-200 text-sm">{label}</div>
+    </div>
   );
 }

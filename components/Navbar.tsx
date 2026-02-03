@@ -11,15 +11,13 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '#home' },
+    { name: 'Home', href: '/' },
     { name: 'About', href: '#about' },
     { name: 'Infrastructure', href: '#infrastructure' },
     { name: 'Academic', href: '#academic' },
@@ -30,9 +28,9 @@ export default function Navbar() {
       name: 'More',
       href: '#',
       dropdown: [
-        { name: 'Gallery', href: '#gallery' },
-        { name: 'Events', href: '#events' },
-        { name: 'Contact', href: '#contact' },
+        { name: 'Gallery', href: '/gallery' },
+        { name: 'Events', href: '/events' },
+        { name: 'Contact', href: '/contact' },
       ],
     },
   ];
@@ -41,38 +39,35 @@ export default function Navbar() {
     <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-md'
-          : 'bg-white/80 backdrop-blur-sm'
+          ? 'bg-white/95 backdrop-blur-md shadow-md text-gray-900'
+          : 'bg-white/30 backdrop-blur-sm text-white'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
+          {/* Logo */}
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
-              GPS
+            <div className="w-12 h-12 bg-gradient-to-br rounded-full flex items-center justify-center object-cover text-white font-bold text-xl shadow-lg">
+             <img src="https://www.gpsonbhadra.in/LOGO5.png" alt="gpsonbhadra" />
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-lg text-gray-900 leading-tight">
-                GPS On Bhadra
-              </span>
-              <span className="text-sm text-gray-600">
-                Polytechnic College
-              </span>
+              <span className="font-bold text-lg leading-tight text-orange-900">GP Sonbhadra</span>
+              <span className="text-sm">Polytechnic College</span>
             </div>
           </div>
 
+          {/* Desktop Nav */}
           <div className="hidden lg:flex items-center space-x-1">
             {navItems.map((item) => (
               <div key={item.name} className="relative group">
                 {item.dropdown ? (
                   <>
                     <button
-                      className="px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 flex items-center gap-1 rounded-lg hover:bg-blue-50"
+                      className="px-4 py-2 font-medium transition-colors duration-200 flex items-center gap-1 rounded-lg hover:bg-blue-50 hover:text-blue-600"
                       onMouseEnter={() => setActiveDropdown(item.name)}
                       onMouseLeave={() => setActiveDropdown(null)}
                     >
-                      {item.name}
-                      <ChevronDown className="w-4 h-4" />
+                      {item.name} <ChevronDown className="w-4 h-4" />
                     </button>
                     {activeDropdown === item.name && (
                       <div
@@ -80,25 +75,25 @@ export default function Navbar() {
                         onMouseEnter={() => setActiveDropdown(item.name)}
                         onMouseLeave={() => setActiveDropdown(null)}
                       >
-                        {item.dropdown.map((subItem) => (
-                          <a
-                            key={subItem.name}
-                            href={subItem.href}
-                            className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                        {item.dropdown.map((sub) => (
+                          <Link
+                            key={sub.name}
+                            href={sub.href}
+                            className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors rounded-lg"
                           >
-                            {subItem.name}
-                          </a>
+                            {sub.name}
+                          </Link>
                         ))}
                       </div>
                     )}
                   </>
                 ) : (
-                  <a
+                  <Link
                     href={item.href}
-                    className="px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 rounded-lg hover:bg-blue-50 block"
+                    className="px-4 py-2 font-medium rounded-lg hover:bg-blue-50 hover:text-blue-600"
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 )}
               </div>
             ))}
@@ -107,19 +102,17 @@ export default function Navbar() {
             </Button>
           </div>
 
+          {/* Mobile Nav Button */}
           <button
-            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="lg:hidden p-2 rounded-lg hover:bg-gray-100"
             onClick={() => setIsOpen(!isOpen)}
           >
-            {isOpen ? (
-              <X className="w-6 h-6 text-gray-700" />
-            ) : (
-              <Menu className="w-6 h-6 text-gray-700" />
-            )}
+            {isOpen ? <X className="w-6 h-6 text-gray-700" /> : <Menu className="w-6 h-6 text-gray-700" />}
           </button>
         </div>
       </div>
 
+      {/* Mobile Menu */}
       {isOpen && (
         <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg">
           <div className="px-4 py-4 space-y-2">
@@ -128,11 +121,9 @@ export default function Navbar() {
                 {item.dropdown ? (
                   <>
                     <button
-                      className="w-full text-left px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg font-medium transition-colors flex items-center justify-between"
+                      className="w-full text-left px-4 py-3 font-medium flex justify-between items-center rounded-lg hover:bg-blue-50 hover:text-blue-600"
                       onClick={() =>
-                        setActiveDropdown(
-                          activeDropdown === item.name ? null : item.name
-                        )
+                        setActiveDropdown(activeDropdown === item.name ? null : item.name)
                       }
                     >
                       {item.name}
@@ -143,28 +134,26 @@ export default function Navbar() {
                       />
                     </button>
                     {activeDropdown === item.name && (
-                      <div className="pl-4 space-y-1 mt-1">
-                        {item.dropdown.map((subItem) => (
-                          <a
-                            key={subItem.name}
-                            href={subItem.href}
-                            className="block px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors"
-                            onClick={() => setIsOpen(false)}
+                      <div className="pl-4 mt-1 space-y-1">
+                        {item.dropdown.map((sub) => (
+                          <Link
+                            key={sub.name}
+                            href={sub.href}
+                            className="block px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg"
                           >
-                            {subItem.name}
-                          </a>
+                            {sub.name}
+                          </Link>
                         ))}
                       </div>
                     )}
                   </>
                 ) : (
-                  <a
+                  <Link
                     href={item.href}
-                    className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg font-medium transition-colors"
-                    onClick={() => setIsOpen(false)}
+                    className="block px-4 py-3 font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg"
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 )}
               </div>
             ))}
