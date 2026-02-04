@@ -5,25 +5,32 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'GPS On Bhadra Polytechnic College - Quality Technical Education',
-  description: 'GPS On Bhadra Polytechnic College offers industry-focused diploma programs in engineering. AICTE approved institution with excellent placement records and modern infrastructure.',
-  keywords: ['polytechnic college', 'engineering diploma', 'technical education', 'GPS On Bhadra', 'placement'],
+  title: 'GP Sonbhadra Polytechnic College - Quality Technical Education',
+  description:
+    'GP Sonbhadra Polytechnic College offers industry-focused diploma programs in engineering.',
+  keywords: ['polytechnic college', 'engineering diploma', 'technical education'],
+
+  icons: {
+    icon: 'https://www.gpsonbhadra.in/LOGO5.png', // 👈 ONLINE ICON URL
+  },
+
   openGraph: {
-    title: 'GPS On Bhadra Polytechnic College',
+    title: 'GP Sonbhadra Polytechnic College',
     description: 'Quality Technical Education with 95% Placement Rate',
     images: [
       {
-        url: 'https://bolt.new/static/og_default.png',
+        url: 'https://www.gpsonbhadra.in/LOGO5.png',
       },
     ],
   },
+
   twitter: {
     card: 'summary_large_image',
-    title: 'GPS On Bhadra Polytechnic College',
+    title: 'GP Sonbhadra Polytechnic College',
     description: 'Quality Technical Education with 95% Placement Rate',
     images: [
       {
-        url: 'https://bolt.new/static/og_default.png',
+        url: 'https://www.gpsonbhadra.in/LOGO5.png',
       },
     ],
   },

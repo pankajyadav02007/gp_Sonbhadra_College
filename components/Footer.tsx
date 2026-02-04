@@ -22,7 +22,7 @@ export default function Footer() {
               </div>
               <div>
                 <h3 className="font-bold text-lg leading-tight">
-                  GPS On Bhadra
+                  GP Sonbhadra
                 </h3>
                 <p className="text-sm text-gray-400">Polytechnic College</p>
               </div>
@@ -113,7 +113,7 @@ export default function Footer() {
               <li className="flex items-start space-x-3 text-sm text-gray-400">
                 <MapPin className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
                 <span>
-                  GPS On Bhadra, Near Railway Station, District - XYZ, State - 123456
+                  GP Sonbhadra, Near Railway Station, District - XYZ, State - 123456
                 </span>
               </li>
               <li className="flex items-center space-x-3 text-sm text-gray-400">
@@ -131,7 +131,7 @@ export default function Footer() {
         <div className="border-t border-gray-700 pt-8 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm text-center md:text-left">
-              &copy; {new Date().getFullYear()} GPS On Bhadra Polytechnic College. All rights reserved.
+              &copy; {new Date().getFullYear()} GP Sonbhadra Polytechnic College. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm text-gray-400">
               <a
