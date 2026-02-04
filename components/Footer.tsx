@@ -18,7 +18,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center space-x-3 mb-4">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center font-bold text-xl shadow-lg">
-                GPS
+                <img src="https://www.gpsonbhadra.in/LOGO5.png" alt="gpsonbhadra" />
               </div>
               <div>
                 <h3 className="font-bold text-lg leading-tight">

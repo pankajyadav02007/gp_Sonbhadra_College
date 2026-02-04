@@ -2,6 +2,17 @@
 
 import { Cog, Cpu, Zap, Car, Building, Wrench } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Montserrat, Lora } from 'next/font/google';
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['500', '600', '700', '800'],
+});
+
+const lora = Lora({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+});
 
 export default function Courses() {
   const courses = [
@@ -55,7 +66,10 @@ export default function Courses() {
     },
   ];
 
-  const colorClasses: Record<string, { bg: string; icon: string; border: string; hover: string }> = {
+  const colorClasses: Record<
+    string,
+    { bg: string; icon: string; border: string; hover: string }
+  > = {
     blue: { bg: 'bg-blue-100', icon: 'text-blue-600', border: 'border-blue-200', hover: 'hover:border-blue-600' },
     green: { bg: 'bg-green-100', icon: 'text-green-600', border: 'border-green-200', hover: 'hover:border-green-600' },
     yellow: { bg: 'bg-yellow-100', icon: 'text-yellow-600', border: 'border-yellow-200', hover: 'hover:border-yellow-600' },
@@ -65,10 +79,10 @@ export default function Courses() {
   };
 
   return (
-    <section id="courses" className="py-20 bg-white">
+    <section id="courses" className={`py-20 bg-white ${lora.className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className={`text-4xl md:text-5xl font-bold text-gray-900 mb-4 ${montserrat.className}`}>
             Our Courses
           </h2>
           <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
@@ -85,10 +99,12 @@ export default function Courses() {
                 key={index}
                 className={`bg-white rounded-2xl p-8 shadow-lg border-2 ${colors.border} ${colors.hover} transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl group`}
               >
-                <div className={`w-16 h-16 ${colors.bg} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <div
+                  className={`w-16 h-16 ${colors.bg} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
+                >
                   <course.icon className={`w-8 h-8 ${colors.icon}`} />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                <h3 className={`text-xl font-bold text-gray-900 mb-3 ${montserrat.className}`}>
                   {course.name}
                 </h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
@@ -114,7 +130,7 @@ export default function Courses() {
 
         <div className="mt-16 text-center">
           <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl p-8 md:p-12">
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+            <h3 className={`text-2xl md:text-3xl font-bold text-gray-900 mb-4 ${montserrat.className}`}>
               Not Sure Which Course to Choose?
             </h3>
             <p className="text-gray-600 mb-8 max-w-2xl mx-auto">

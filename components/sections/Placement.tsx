@@ -1,6 +1,17 @@
 'use client';
 
 import { Briefcase, TrendingUp, Users, Award, Building2, Target } from 'lucide-react';
+import { Playfair_Display, Inter } from 'next/font/google';
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['600', '700', '800'],
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+});
 
 export default function Placement() {
   const stats = [
@@ -40,10 +51,16 @@ export default function Placement() {
   ];
 
   return (
-    <section id="placement" className="py-20 bg-gradient-to-br from-gray-50 to-white">
+    <section
+      id="placement"
+      className={`py-20 bg-gradient-to-br from-gray-50 to-white ${inter.className}`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* HEADER */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2
+            className={`text-4xl md:text-5xl font-bold text-gray-900 mb-4 ${playfair.className}`}
+          >
             Training & Placement
           </h2>
           <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
@@ -52,6 +69,7 @@ export default function Placement() {
           </p>
         </div>
 
+        {/* STATS */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {stats.map((stat, index) => (
             <div
@@ -61,12 +79,15 @@ export default function Placement() {
               <div className="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <stat.icon className="w-7 h-7 text-blue-600" />
               </div>
-              <div className="text-3xl font-bold text-gray-900 mb-2">{stat.value}</div>
+              <div className={`text-3xl font-bold text-gray-900 mb-2 ${playfair.className}`}>
+                {stat.value}
+              </div>
               <div className="text-gray-600 text-sm font-medium">{stat.label}</div>
             </div>
           ))}
         </div>
 
+        {/* SERVICES */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {services.map((service, index) => (
             <div
@@ -74,14 +95,23 @@ export default function Placement() {
               className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-t-4 border-blue-600"
             >
               <service.icon className="w-10 h-10 text-blue-600 mb-4" />
-              <h3 className="text-lg font-bold text-gray-900 mb-3">{service.title}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{service.description}</p>
+              <h3
+                className={`text-lg font-bold text-gray-900 mb-3 ${playfair.className}`}
+              >
+                {service.title}
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                {service.description}
+              </p>
             </div>
           ))}
         </div>
 
+        {/* RECRUITERS */}
         <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl">
-          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
+          <h3
+            className={`text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center ${playfair.className}`}
+          >
             Our Top Recruiters
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -98,9 +128,14 @@ export default function Placement() {
           </div>
         </div>
 
+        {/* CTA */}
         <div className="mt-16 bg-gradient-to-r from-blue-600 to-blue-800 rounded-3xl p-8 md:p-12 text-white shadow-2xl">
           <div className="text-center max-w-3xl mx-auto">
-            <h3 className="text-3xl font-bold mb-4">Launch Your Career with Us</h3>
+            <h3
+              className={`text-3xl font-bold mb-4 ${playfair.className}`}
+            >
+              Launch Your Career with Us
+            </h3>
             <p className="text-blue-100 mb-8 text-lg">
               Our dedicated placement cell ensures every student gets the best opportunities to start their professional journey
             </p>

@@ -22,6 +22,7 @@ const nextConfig = {
       "citspc.edu.in",
       "www.kpspolytechnic.in",
       "www.gpsonbhadra.in",
+      "media.istockphoto.com",
     ],
   },
 };

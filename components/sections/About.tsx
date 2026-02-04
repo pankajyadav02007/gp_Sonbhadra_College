@@ -1,8 +1,17 @@
 'use client';
 
-// import { Award, CheckCircle, Eye, Target } from "lucide";
-
 import { CheckCircle, Target, Eye, Award } from 'lucide-react';
+import { Poppins, Playfair_Display } from 'next/font/google';
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+});
 
 export default function About() {
   const features = [
@@ -15,10 +24,15 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-20 bg-gradient-to-br from-gray-50 to-white">
+    <section
+      id="about"
+      className={`py-20 bg-gradient-to-br from-gray-50 to-white ${poppins.className}`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2
+            className={`text-4xl md:text-5xl font-bold text-gray-900 mb-4 ${playfair.className}`}
+          >
             About Our College
           </h2>
           <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
@@ -32,7 +46,9 @@ export default function About() {
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-blue-400 rounded-3xl opacity-20 blur-2xl"></div>
               <div className="relative bg-gradient-to-br from-blue-600 to-blue-800 rounded-3xl p-8 md:p-12 text-white shadow-2xl">
-                <h3 className="text-3xl font-bold mb-6">
+                <h3
+                  className={`text-3xl font-bold mb-6 ${playfair.className}`}
+                >
                   Empowering Future Engineers Since Establishment
                 </h3>
                 <p className="text-blue-100 leading-relaxed mb-6">
@@ -65,7 +81,11 @@ export default function About() {
             <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
               <Target className="w-8 h-8 text-blue-600" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
+            <h3
+              className={`text-2xl font-bold text-gray-900 mb-4 ${playfair.className}`}
+            >
+              Our Mission
+            </h3>
             <p className="text-gray-600 leading-relaxed">
               To provide quality technical education and create skilled professionals who can contribute to industrial and economic development of the nation.
             </p>
@@ -75,7 +95,11 @@ export default function About() {
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
               <Eye className="w-8 h-8 text-green-600" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
+            <h3
+              className={`text-2xl font-bold text-gray-900 mb-4 ${playfair.className}`}
+            >
+              Our Vision
+            </h3>
             <p className="text-gray-600 leading-relaxed">
               To be a center of excellence in technical education, fostering innovation, research, and entrepreneurship among students.
             </p>
@@ -85,7 +109,11 @@ export default function About() {
             <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6">
               <Award className="w-8 h-8 text-orange-600" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Values</h3>
+            <h3
+              className={`text-2xl font-bold text-gray-900 mb-4 ${playfair.className}`}
+            >
+              Our Values
+            </h3>
             <p className="text-gray-600 leading-relaxed">
               Excellence, Integrity, Innovation, and Student-Centric approach form the core values that guide our institution.
             </p>
